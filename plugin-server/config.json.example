@@ -1,0 +1,4 @@
+{
+    "listenAddress": ":8080",
+    "dataRoot": "./data"
+}

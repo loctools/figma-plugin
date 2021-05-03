@@ -1,0 +1,304 @@
+body {
+    font: normal 400 11px/16px Inter, Roboto, sans-serif;
+    font-feature-settings: 'liga' on, 'calt' on;
+    margin: 0;
+}
+
+button {
+    background: #fff;
+    border: 1px solid #999;
+    font-size: 11px;
+    padding: 4px 8px;
+}
+
+hr {
+    border: none;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+label {
+    color: #b3b3b3;
+}
+
+label[for] {
+    color: initial;
+    user-select: none;
+}
+
+input {
+    border: 1px solid transparent;
+    border-radius: 2px;
+    padding: 5px 8px;
+}
+
+input:hover {
+    border-color: #e5e5e5;
+}
+
+input:focus {
+    border: 1px solid #18a0fb;
+    box-shadow: 0 0 1px 1px #18a0fb inset;
+    outline: none;
+}
+
+.hidden {
+    display: none;
+}
+
+#container {
+    height: 100%;
+    display: grid;
+    grid-template-rows: min-content auto;
+}
+
+#tabs {
+    border-bottom: 1px solid #e5e5e5;
+    padding: 0 16px;
+    user-select: none;
+}
+
+#tabs button {
+    border: none;
+    padding: 12px 0;
+    margin: 0;
+    margin-right: 12px;
+    color: #b3b3b3;
+    outline: none;
+    font-weight: 600;
+}
+
+#tabs button:hover {
+    color: #444;
+}
+
+#container.inspectorTab #inspectorTab,
+#container.serverTab #serverTab,
+#container.dangerZoneTab #dangerZoneTab,
+#container.debugTab #debugTab {
+    color: #333;
+}
+
+#serverTab,
+#dangerZoneTab,
+#debugTab {
+    display: none;
+}
+
+#container.online #serverTab,
+#container.wasonline #serverTab,
+body.debug #serverTab,
+body.debug #dangerZoneTab,
+body.debug #debugTab {
+    display: initial;
+}
+
+#tabcontent {
+    height: 100%;
+    overflow: hidden;
+}
+
+.tabContainer {
+    display: none;
+}
+
+.tabContent {
+    padding: 16px;
+}
+
+.tabContent > p:first-child {
+    margin-top: 0;
+}
+
+.tabContent > p:last-child {
+    margin-bottom: 0;
+}
+
+#container.inspectorTab #inspectorOptions,
+#container.serverTab #serverOptions,
+#container.dangerZoneTab #dangerZoneOptions,
+#container.debugTab #debugOptions {
+    display: block;
+}
+
+#connectBtn,
+#container.offline.connecting #connectBtn {
+    visibility: hidden;
+    /*display: none;*/
+    margin-left: 1em;
+}
+
+#container.offline #connectBtn {
+    visibility: visible;
+    /*display: inline;*/
+}
+
+#statusNoConnection,
+#statusSpinner {
+    display: none;
+    vertical-align: text-bottom;
+    margin-right: 0.3em;
+}
+
+#container.offline #statusNoConnection {
+    display: inline;
+}
+
+#container.offline #scanOptionsPanel {
+    color: #ccc;
+}
+
+#container.online #statusSpinner {
+    display: inline;
+    animation: spin 6s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+#serverOptions.tabContainer {
+    padding: 0;
+}
+
+.serverOptionsContent {
+    height: 100%;
+    display: grid;
+    grid-template-rows: min-content auto;
+}
+
+#activityLog {
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+    background: #333;
+    color: #ccc;
+}
+
+#activityLog p {
+    line-height: 110%;
+}
+
+#activityLog time {
+    color: #9f9;
+    margin-inline-end: 0.5em;
+}
+
+#activityLog .status {
+    color: #fff;
+    margin-inline-start: 0.5em;
+}
+
+#activityLog .status.ok {
+    color: #6c6;
+}
+
+#activityLog .status.error {
+    color: #c66;
+}
+
+#gotoNodeInput {
+    width: 80%;
+}
+
+#gotoNodeBtn {
+    margin-inline-start: -3em;
+}
+
+textarea {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+
+textarea[disabled] {
+    border-color: #eee;
+}
+
+textarea#variantEditor,
+textarea#assetComments {
+    height: 210px;
+    font-size: 140%;
+    padding: 0.2em 0.4em;
+    line-height: 140%;
+}
+
+textarea#assetComments {
+    height: 150px;
+    font-size: 120%;
+    padding: 0.2em 0.4em;
+    line-height: 120%;
+}
+
+button.link {
+    border: none;
+    color: #06f;
+    cursor: pointer;
+}
+
+button.link:focus {
+    outline: none;
+    text-decoration: underline;
+}
+
+button.link[disabled] {
+    color: #ccc;
+}
+
+#variantEditorContainer,
+#assetEditorContainer {
+    display: none;
+}
+
+#variantEditorContainer.editable,
+#assetEditorContainer.editable {
+    display: block;
+}
+
+#variantEditorContainer {
+    position: relative;
+}
+
+#variantErrorIndicator {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: help;
+}
+
+select {
+    -webkit-appearance: none;
+    border: 1px solid transparent;
+    border-radius: 0;
+    border-radius: 2px;
+    padding: 5px 8px;
+    margin-left: -9px;
+    background: url('res/dropdown.svg');
+    background-size: 8px 7px;
+    background-repeat: no-repeat;
+    background-position: center right 8px;
+}
+
+select:hover {
+    border-color: #e5e5e5;
+}
+
+select option {
+    -webkit-appearance: none;
+}
+
+select#scope {
+    margin-left: 0;
+}
+
+#variantUpdateBtn {
+    width: 100%;
+}
+
+#updateFromSceneBtn {
+    color: #c00;
+}

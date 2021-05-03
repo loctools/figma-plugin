@@ -1,0 +1,112 @@
+<div id="container">
+    <div id="tabs">
+        <button id="inspectorTab">Inspector</button>
+        <button id="serverTab">Server</button>
+        <button id="dangerZoneTab">Danger Zone</button>
+        <button id="debugTab">Debug</button>
+    </div>
+    <div id="tabcontent">
+        <div id="debugOptions" class="tabContainer tabContent">
+            <p>
+                <button id="testExportBtn">Export current variant</button>
+            </p>
+            <p>
+                <button id="testExportAllBtn">Export all data for the selected asset</button>
+            </p>
+            <p id="scanOptionsPanel">
+                <!--
+                <input id="autoScanCheckbox" type="checkbox" />
+                <label for="autoScanCheckbox">Scan for changes every 5 minutes</label>
+                -->
+                <button id="scanBtn">Scan assets now</button>
+            </p>
+            <!--
+            <hr />
+            <p>
+                <button id="testCustomFnBtn">Test custom function</button>
+            </p>
+            -->
+        </div>
+        <div id="dangerZoneOptions" class="tabContainer tabContent">
+            <p>
+                Variant: <input id="variant" type="text" />
+            </p>
+            <p>
+                Scope: <select id="scope">
+                    <option value="node">Selected text node</option>
+                    <option value="asset">Selected asset</option>
+                    <option value="page">Current page</option>
+                </select>
+            </p>
+            <p>
+                <button id="addVariantBtn">Add variant</button>
+                <button id="removeVariantBtn">Remove variant</button>
+            </p>
+            <p>
+                <button id="removeOtherVariantsBtn">Remove all other variants</button>
+            </p>
+        </div>
+        <div id="serverOptions" class="tabContainer">
+            <div class="serverOptionsContent">
+                <div class="tabContent">
+                    <p>
+                        <svg id="statusNoConnection" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="3" y1="3" x2="13" y2="13" style="stroke: red; stroke-width: 1;" />
+                            <line x1="3" y1="13" x2="13" y2="3" style="stroke: red; stroke-width: 1;" />
+                            <circle cx="8" cy="8" r="7" style="stroke: red; stroke-width: 1; fill: none;" />
+                        </svg>
+                        <svg id="statusSpinner" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="8" y1="8" x2="11" y2="13" style="stroke: green; stroke-width: 1;" />
+                            <line x1="8" y1="8" x2="5" y2="13" style="stroke: green; stroke-width: 1;" />
+                            <circle cx="8" cy="8" r="7" style="stroke: green; stroke-width: 1; fill: none;" />
+                        </svg>
+                        <span id="serverStatus">&nbsp;</span>
+                        <button id="connectBtn">Connect</button>
+                    </p>
+                </div>
+                <div id="activityLog" class="tabContent"></div>
+            </div>
+        </div>
+        <div id="inspectorOptions" class="tabContainer tabContent">
+            <p>
+                <label>ID</label>
+                <input id="gotoNodeInput" value="" placeholder="none" />
+                <button id="gotoNodeBtn" class="hidden" title="Go to node (or press Enter in ID input)">&rarr;</button>
+            </p>
+            <p>
+                <select id="variantSelect" class="hidden">
+                    <optgroup label="Source">
+                        <option value="src">Source</option>
+                    </optgroup>
+                    <optgroup id="targetVariants" label="Target variants"> </optgroup>
+                </select>
+                <button class="link hidden" id="switchAssetVariantBtn" title="Switch the currently selected asset to this language">
+                    Switch to this variant
+                </button>
+                <button class="link hidden" id="updateFromSceneBtn" title="Update current variant from the current text node text value">
+                    &darr; Update from scene
+                </button>
+            </p>
+            <div id="variantEditorContainer">
+                <p>
+                    <textarea id="variantEditor"></textarea>
+                </p>
+                <p>
+                    <button id="variantUpdateBtn">Save variant (Cmd+Enter)</button>
+                </p>
+                <div id="variantErrorIndicator" title="xxxxxxxx">⚠️</div>
+            </div>
+            <div id="assetEditorContainer">
+                <p>
+                    Comments:
+                    <textarea id="assetComments"></textarea>
+                    <input type="checkbox" id="assetReady" /><label for="assetReady">Ready for processing</label>
+                    <input type="checkbox" id="assetWasModified" /><label for="assetWasModified">Was modified</label>
+                </p>
+                <p>
+                    <button id="assetUpdateBtn">Save settings</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
