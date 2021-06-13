@@ -1243,7 +1243,7 @@ async function parseLocJsonFile(path: string, rawJson: string) {
 
     if (assetPath !== path) {
         console.warn(
-            'locJSON asset path ' + assetPath + " doesn't match current asset path " + assetPath
+            'locJSON asset path ' + path + " doesn't match current asset path " + assetPath
         );
         log('File ' + path + ' is obsolete');
         return;
