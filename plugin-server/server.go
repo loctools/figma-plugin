@@ -475,6 +475,7 @@ func processLocalizationFile(path string) error {
 		return err
 	}
 
+	path = filepath.ToSlash(path) // normalize the file path across operating systems
 	path = path[len(prefix):] // remove the prefix
 
 	envelope := struct {
