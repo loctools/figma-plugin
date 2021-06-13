@@ -180,7 +180,7 @@ func uploadHandlerInternal(w http.ResponseWriter, req *http.Request) (err error)
 
 	filename := req.FormValue("filename")
 	log.Printf("Got file: %s", filename)
-	filename = config.CFG.DataRoot + "/" + filename
+	filename = config.CFG.DataRoot + string(os.PathSeparator) + filename
 
 	err = os.MkdirAll(path.Dir(filename), 0777)
 	if err != nil {
@@ -203,7 +203,7 @@ func uploadHandlerInternal(w http.ResponseWriter, req *http.Request) (err error)
 	log.Printf("%d bytes written to file", n)
 
 	// If not a localization file, return
-	if !strings.HasPrefix(filename, localizationDirName+"/") {
+	if !strings.HasPrefix(filename, localizationDirName + string(os.PathSeparator)) {
 		return
 	}
 
@@ -351,7 +351,7 @@ func processAssetsChangeForDir(dir string, allowedDirs []string) error {
 
 		for i := 0; i < len(allowedDirs); i++ {
 			// TODO: convert fullPath to an absolute path?
-			fullPath := dir + "/" + allowedDirs[i]
+			fullPath := dir + string(os.PathSeparator) + allowedDirs[i]
 			if d == fullPath {
 				found = true
 				break
@@ -465,7 +465,9 @@ func scanLocalizationFiles(initialize bool, force bool) error {
 }
 
 func processLocalizationFile(path string) error {
-	prefix := localizationDirName + "/"
+	prefix := localizationDirName + string(os.PathSeparator)
+	log.Printf("processLocalizationFile(), path=[%s], prefix=[%s]", path, prefix)
+
 	if !strings.HasPrefix(path, prefix) {
 		return errors.New("Unexpected file path")
 	}
@@ -475,8 +477,8 @@ func processLocalizationFile(path string) error {
 		return err
 	}
 
-	path = filepath.ToSlash(path) // normalize the file path across operating systems
 	path = path[len(prefix):] // remove the prefix
+	path = filepath.ToSlash(path) // normalize the file path across operating systems
 
 	envelope := struct {
 		Action string `json:"action"`
@@ -504,9 +506,9 @@ func processLocalizationFile(path string) error {
 func main() {
 	config.Load()
 
-	assetsDirName = config.CFG.DataRoot + "/assets"
-	localizationDirName = config.CFG.DataRoot + "/localization"
-	previewDirName = config.CFG.DataRoot + "/preview"
+	assetsDirName = config.CFG.DataRoot + string(os.PathSeparator) + "assets"
+	localizationDirName = config.CFG.DataRoot + string(os.PathSeparator) + "localization"
+	previewDirName = config.CFG.DataRoot + string(os.PathSeparator) + "preview"
 
 	//fmt.Printf("%+v", config.CFG)
 
